@@ -21,7 +21,31 @@
         echo "Houve uma falha: " . $e->getMessage(). "<BR>";
     }
 
-    echo "Finalizando o arquivo<BR>"
+    echo "Finalizando o arquivo<BR>";
+
+    // Operador spaceship <=>
+    $x = "b" <=> "a";
+    echo $x . "<BR>";
+
+    $x = "b" <=> "b";
+    echo $x . "<BR>";
+
+    $x = "b" <=> "c";
+    echo $x . "<BR>";
+
+    switch($x)
+    {
+        case -1:
+            echo "É menor/anterior<BR>";
+            break;
+        case 0:
+            echo "É maior/anterior<BR>";
+            break;
+        case 1:
+            break;
+
+
+    }
 
 ?>
     
