@@ -43,9 +43,40 @@
             break;
         case 1:
             break;
+    }
 
+    // Operador ??
+
+    $x = null;
+
+    if(isset($x) == TRUE) 
+    {
+        $y = $x;
+    }
+    else{
+        $y = "Valor alternativo";
 
     }
+    echo $y . "<BR>";
+
+
+    // x com valor "teste"
+    $x = "teste";
+
+    if(isset($x) == TRUE) 
+    {
+        $y = $x;
+    }
+    else{
+        $y = "Valor alternativo";
+
+    }
+    echo $y . "<BR>";
+
+    // Com novo operador ??
+
+    $z = $x ?? "Valor alternativo";
+    echo $z . "<BR>";
 
 ?>
     
