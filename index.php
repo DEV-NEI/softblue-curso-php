@@ -191,8 +191,80 @@
    echo $_SERVER["REMOTE_ADDR"] . "<BR>"; 
    
    
-   phpinfo();
-    
+   $strExemplo = "PHP é na softblue";
+echo $strExemplo. "<BR>";
+
+$x = str_replace("na", "com a", $strExemplo);
+echo($x). "<BR>";
+
+$x = chr(65);
+echo ($x) . "<BR>";
+
+
+$x = strtolower($strExemplo);
+echo ($x) . "<BR>";
+
+$x = strtoupper("$strExemplo");
+echo ($x) . "<BR>";
+
+$strExemplo = "php é na softblue";
+
+$x = ucfirst($strExemplo);
+echo ($x) . "<BR>";
+
+$x = ucwords($strExemplo);
+echo ($x) . "<BR>";;
+
+$x = strrev($strExemplo);
+echo ($x) . "<BR>";
+
+
+$strExemplo = "PHP é na softblue";
+/*
+$x = crypt($strExemplo);
+echo($x) . "<BR>";
+
+$x = sha1($strExemplo);
+echo($x) . "<BR>";
+
+$x = md5($strExemplo);
+echo($x) . "<BR>" ;
+
+*/
+
+$x = str_split($strExemplo, 4);
+// echo($x) . "<BR>";
+echo($x[0]) . "<BR>";
+echo($x[1]) . "<BR>";
+echo($x[2]) . "<BR>";
+echo($x[3]) . "<BR>";
+echo($x[4]) . "<BR>";
+
+
+$x = trim($strExemplo);
+$x = str_replace(" ", "_", $x);
+echo($x) . "<BR>";
+
+
+$x = ltrim($strExemplo);
+$x = str_replace(" ", "_", $x);
+echo($x) . "<BR>";
+
+$x = rtrim($strExemplo);
+$x = str_replace(" ", "_", $x);
+echo($x) . "<BR>";
+
+$strExemplo = "15";
+echo($x = (int)$strExemplo) . "<BR>";
+echo (++$strExemplo) . "<BR>";
+
+$strExemplo = "a15b40";
+echo(++$strExemplo) . "<BR>";
+
+$strExemplo = "a15b40c";
+echo(++$strExemplo);
+   
+phpinfo();    
 
 ?>
 
