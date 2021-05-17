@@ -220,8 +220,8 @@ echo ($x) . "<BR>";
 
 
 $strExemplo = "PHP é na softblue";
-/*
-$x = crypt($strExemplo);
+
+$x = crypt($strExemplo, "andre");
 echo($x) . "<BR>";
 
 $x = sha1($strExemplo);
@@ -230,10 +230,9 @@ echo($x) . "<BR>";
 $x = md5($strExemplo);
 echo($x) . "<BR>" ;
 
-*/
+
 
 $x = str_split($strExemplo, 4);
-// echo($x) . "<BR>";
 echo($x[0]) . "<BR>";
 echo($x[1]) . "<BR>";
 echo($x[2]) . "<BR>";
