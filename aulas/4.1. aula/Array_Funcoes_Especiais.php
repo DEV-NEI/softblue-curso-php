@@ -24,11 +24,17 @@ echo $arrayExemplo[1][0]  . "<BR>";
 
 
 
-//Funções Especiais print_r(impressão de valores)
-// Comandos de array
-//unset - excluindo posicao
-// count e sizeof (tamanho do array)
-//foreach (navegação de array)
+/*
+* Funções Especiais print_r(impressão de valores)
+* Comandos de array
+* UNSET - excluindo posicao
+* COUNT e SIZEOF -(tamanho do array)
+* FOREAH - (navegação de array)
+* ARRAY_PUSH e ARRAY_POP -(Trabalhando com pilhas) Adiciona e Remove
+* ARRAY_SHIFT e ARRAY_UNSHIFT (Trabalhando com filas) Remove o primeiro elemento do array / Adiciona elemento no array na primeira posição
+* ARRAY_MAP (executa a função em todo array)
+* 
+*/
 
 
 //Criando um array
@@ -83,37 +89,61 @@ return "R$ ". $valor;
 }
 
 $arrayExemplo = array_map("insereMoeda", $arrayExemplo);
+print_r($arrayExemplo) . "<BR>";
+
+$arrayExemplo = array ("PHP", "SQL", 100, "Assembler");
+print_r($arrayExemplo) . "<BR>";
+
+// Verificando ocorrência
+$arrayExemplo = array("Linguagem1"=> "Php", "Linguagem2"=> "SQL", "Linguagem3"=> 100, "Linguagem4"=> "Assembler" );
+print_r($arrayExemplo) . "<BR>";
+
+
+echo array_key_exists("Linguagem2", $arrayExemplo);
+echo array_key_exists("Linguagem7", $arrayExemplo);
+
+$keys = array_keys($arrayExemplo);
+foreach($keys as $key) { echo $key. " ";}
+
+$key = array_search("Php", $arrayExemplo);
+echo($key) . "<BR>";
+
+$key = in_array("SQL", $arrayExemplo);
+echo($key);
+
+$key = in_array("NOSQL", $arrayExemplo);
+echo($key);
+
+// Ordenação de array
+// Embaralhar a orderm
+ shuffle($arrayExemplo);
+ print_r($arrayExemplo) . "<BR>";
+ print_r($arrayExemplo) . "<BR>";
+ 
+
+
+$arrayExemplo = array("Linguagem1"=>"Php", "Linguagem2"=>"SQL", "Linguagem3"=>100, "Linguagem4"=>"Assembler");
+
+sort($arrayExemplo);
 print_r($arrayExemplo);
 
+rsort($arrayExemplo);
+print_r($arrayExemplo);
+
+//Transformação entre string e array
+
+$stringExemplo = "var1=natacao&var2=basquete&teste=futebol";
+parse_str($stringExemplo, $arrayResultado);
+print_r($arrayResultado);
+
+$stringExemplo = "Aluno do curso de PHP";
+$arrayResultado = explode(" ", $stringExemplo);
+print_r($arrayResultado);
 
 
-
-
-
-
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$arrayExemplo = array("Maçã", "Laranja", "Mamão", "Uva");
+$stringResultado = implode("-", $arrayExemplo);
+print_r($stringResultado);
 
 ?>
 </body>
