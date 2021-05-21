@@ -15,6 +15,7 @@ echo "<BR><BR>";
 echo date("Y-m-d", 1621549216);
 echo "<BR><BR>";
 echo date("D-d-M-Y");
+echo "<BR><BR>";
 
 // Operações com data e hora
 
@@ -41,10 +42,20 @@ echo "<BR>";
 echo date("d/m/Y", strtotime("+ 48 hour"));
 echo "<BR>";
 echo date("d/m/Y", strtotime("+ 1 year"));
-echo "<BR>";
+echo "<BR><BR>";
 
+if (checkdate(05, 20, 2021))
+{
+	echo "Data Ok!";
+}
+else
+{
+	 echo "Data inválida!";
+}
+echo "<BR>";
 
 ?>
 
 </body>
 </html>
+
