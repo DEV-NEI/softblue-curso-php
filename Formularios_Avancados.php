@@ -8,7 +8,7 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
 {
     if(strlen($_POST["nome"]) < 5)
     {   
-        $erro = "Preencha o campo corretamentoe(5 ou mais caracteres";
+        $erro = "Preencha o campo nome corretamentoe(5 ou mais caracteres)";
     }
     else if(strlen($_POST["email"]) < 6)
         {
@@ -18,7 +18,7 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
     {
         $erro = "Campo idade deve ser numérico";
     }
-    else if($_POST["Sexo"] != "M" && $_POST["Sexo"] != "F")
+    else if($_POST["sexo"] != "M" && $_POST["sexo"] != "F")
     {
         $erro = "Selecione o campo sexo corretamente";
     }
@@ -47,6 +47,15 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
 </head>
 <body>
     <?php
+
+        if($valido == true)
+        {
+            echo "Dados enviados com sucesso!";
+        }
+        else
+        {
+
+        
         if(isset($erro))
         {
             echo $erro . "<BR><BR>";
@@ -56,32 +65,65 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
 
         <FORM method=POST action="?validar=true">
             Nome:
-            <INPUT type=TEXT name=nome><BR>
+            <INPUT type=TEXT name=nome
+            <?php if(isset($_POST["nome"])) { echo "value='" . $_POST["nome"] . "'";}  ?>        
+             ><BR>
 
             E-mail:
-            <INPUT type=TEXT name=email><BR>
+            <INPUT type=TEXT name=email 
+            <?php if(isset($_POST["email"])) { echo "value='" . $_POST["email"] . "'";}  ?>        
+             ><BR>
+            
             
             Idade:
-            <INPUT type=TEXT name=idade><BR>
+            <INPUT type=TEXT name=idade
+            <?php if(isset($_POST["idade"])) { echo "value='" . $_POST["idade"] . "'";}  ?>        
+             ><BR>
+            
 
             Sexo:
-            <INPUT type=RADIO name=sexo value="M">Masculino
-            <INPUT type=RADIO name=sexo value="F">Feminino
+            <INPUT type=RADIO name=sexo value="M"
+            <?php if(isset($_POST["sexo"]) && $_POST["sexo"] == "M") { echo "checked";}  ?>        
+            >Masculino
+            <INPUT type=RADIO name=sexo value="F"
+            <?php if(isset($_POST["sexo"]) && $_POST["sexo"] == "F") { echo "checked";}  ?>  
+            >Feminino
             <BR>
 
             Interesses:
-            <INPUT type=CHECKBOX name="humalnas">Ciências Humanas
-            <INPUT type=CHECKBOX name="exatas">Ciências Exatas
-            <INPUT type=CHECKBOX name="biologicas">Ciências Biológicas
+            <INPUT type=CHECKBOX name="humanas"
+            <?php if(isset($_POST["humanas"])) { echo "checked";}  ?>  
+            >Ciências Humanas
+            
+
+            <INPUT type=CHECKBOX name="exatas"
+            <?php if(isset($_POST["exatas"])) { echo "checked";}  ?>  
+            >Ciências Exatas
+
+            <INPUT type=CHECKBOX name="biologicas"
+            <?php if(isset($_POST["biologicas"])) { echo "checked";}  ?>  
+            >Ciências Biológicas
             <BR>
 
             Estado civil:
             <SELECT name="estadocivil">
                 <OPTION>Selecione...</OPTION>
-                <OPTION>Solteiro(a)</OPTION>
-                <OPTION>Casado(a)</OPTION>
-                <OPTION>Divorciado(a)</OPTION>
-                <OPTION>Viúvo(a)</OPTION>                
+                <OPTION
+                <?php if(isset($_POST["estadocivil"]) && $_POST["estadocivil"] == "Solteiro(a)") { echo "selected";}  ?>
+                >Solteiro(a)</OPTION>
+
+                <OPTION
+                <?php if(isset($_POST["estadocivil"]) && $_POST["estadocivil"] == "Casado(a)") { echo "selected";}  ?>
+                >Casado(a)</OPTION>
+
+                <OPTION
+                <?php if(isset($_POST["estadocivil"]) && $_POST["estadocivil"] == "Divorciado(a)") { echo "selected";}  ?>
+                >Divorciado(a)</OPTION>
+
+                <OPTION
+                <?php if(isset($_POST["estadocivil"]) && $_POST["estadocivil"] == "Viúvo(a)") { echo "selected";}  ?>
+                >Viúvo(a)</OPTION>                
+
             </SELECT>
             <BR>     
 
@@ -91,6 +133,9 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
             
         
         </FORM>
+        <?php 
+            }
+        ?>
     
 </body>
 </html>
