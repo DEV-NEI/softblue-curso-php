@@ -5,7 +5,7 @@ $valido = false;
 
 try
 {
-    $connection = new PDO("mysql:host=localhost;dbname=cursophp", "root", "senhadobanco");
+    $connection = new PDO("mysql:host=localhost;dbname=cursophp", "root", "123456");
     $connection->exec("set names utf8");
 }
 catch(PDOException $e)
