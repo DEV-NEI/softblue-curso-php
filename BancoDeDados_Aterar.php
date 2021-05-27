@@ -3,6 +3,22 @@
 $erro = null;
 $valido = false;
 
+// Abrir com os dados lidos para alterar
+
+try
+{
+    $connection = new PDO("mysql:host=localhost;dbname=cursophp", "root", "123456");
+    $connection->exec("set names utf8");
+}
+catch(PDOException $e)
+{
+    echo "Falha: " . $e->getMessage();
+    exit();
+}
+
+
+
+
 if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
 {
     if(strlen(utf8_decode($_POST["nome"])) < 5)
@@ -32,20 +48,17 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
     {
         $valido = true;
         
-        try
-        {
-            $connection = new PDO("mysql:host=localhost;dbname=cursophp", "root", "123456");
-            $connection->exec("set names utf8");
-        }
-        catch(PDOException $e)
-        {
-            echo "Falha: " . $e->getMessage();
-            exit();
-        }
-        
-        $sql = "INSERT INTO usuarios
-                (nome, email, idade, sexo, estado_civil, humanas, exatas, biologicas, senha)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+              
+        $sql = "UPDATE usuarios SET
+                nome = ?,
+                email = ?,
+                idade = ?,
+                sexo = ?,
+                estado_civil = ?,
+                humanas = ?,
+                exatas = ?,
+                biologicas = ?
+                WHERE id = ?";
                 
         $stmt = $connection->prepare($sql);
         
@@ -62,12 +75,9 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
         $stmt->bindParam(7, $checkExatas);
         
         $checkBiologicas = isset($_POST["biologicas"]) ? 1 : 0;
-        $stmt->bindParam(8, $checkBiologicas);
-        
-        // Usando uma semente para mais segurança 
-        // $passwordHash = md5("abcdf123456testesiteseguranca@cuso" . $_POST["senha"]);
-        $passwordHash = md5($_POST["senha"]);
-        $stmt->bindParam(9, $passwordHash);
+        $stmt->bindParam(8, $checkBiologicas);      
+
+        $stmt->bindParam(9, $_POST["id"]);
         
         $stmt->execute();
         
@@ -79,18 +89,49 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
         }
     }
 }
+else
+{
+    $rs = $connection->prepare("SELECT * FROM usuarios WHERE id = ?");
+    $rs ->bindParam(1, $_REQUEST["id"]);
+
+    if($rs->execute())
+    {
+        if($registro = $rs->fetch(PDO::FETCH_OBJ))
+        {
+            $_POST["nome"] = $registro->nome;
+            $_POST["email"] = $registro->email;
+            $_POST["idade"] = $registro->idade;
+            $_POST["sexo"] = $registro->sexo;
+            $_POST["estadocivil"] = $registro->estado_civil;
+
+            $_POST["humanas"] = $registro->humanas == 1 ? true : null;
+            $_POST["exatas"] = $registro->exatas == 1 ? true : null;
+            $_POST["biologicas"] = $registro->biologicas == 1 ? true : null;          
+        }
+        else
+        {
+            $erro = "Registro  não encontrado";
+        }
+    }
+    else
+    {
+        $erro = "Falha na captura do registro";
+    }
+
+    
+}
 
 ?>
 <HTML>
     <HEAD>
-        <TITLE>Banco de Dados: Cadastro</TITLE>
+        <TITLE>Banco de Dados: Alteração</TITLE>
     </HEAD>
     <BODY>
         <?php
         
             if($valido == true)
             {
-                echo "Dados enviados com sucesso!";
+                echo "Dados alterados com sucesso!";
                 echo "<BR><BR>";
                 echo "<A href='BancoDeDados_Lista.php'>Visualizar registros</A>";
             }
@@ -176,10 +217,11 @@ if(isset($_REQUEST["validar"]) && $_REQUEST["validar"] == true)
                 >Viúvo(a)</OPTION>
             </SELECT>
             <BR>
+
+            <INPUT type=HIDDEN name=id value="<?php echo $_REQUEST["id"]; ?>"
+            >
                 
-            Senha:
-            <INPUT type=PASSWORD name="senha"><BR>
-            <INPUT type=SUBMIT value="Enviar">
+            <INPUT type=SUBMIT value="Alterar">
 
         </FORM>
         <?php
