@@ -74,6 +74,37 @@ $guitarra->tocar();
 echo "<BR><BR>";
 
 $guitarra->tocarGuitarra();
+echo "<BR><BR>";
+
+
+//valor que não vai mudar deve criar como 'static' para não usar recurso de memória - não precisa instaciar objetos.
+class EscalaMusical
+{
+    public static $escalaDoMaior = "C D E F G A B C" ;
+    public $vezesQueFoiUtilizada;
+
+    public static function calculaDecibeis($watts)
+    {
+            return $watts / 10;
+
+    }
+}
+
+echo EscalaMusical::$escalaDoMaior . "<BR>";
+echo EscalaMusical::calculaDecibeis(123) . "<BR>";
+
+$emC = new EscalaMusical();
+$emC-> vezesQueFoiUtilizada = 3;
+echo "Foi utilizada: " . $emC->vezesQueFoiUtilizada . "<BR>";
+
+
+
+$emD = new EscalaMusical();
+$emD-> vezesQueFoiUtilizada = 5;
+echo "Foi utilizada: " . $emD->vezesQueFoiUtilizada . "<BR>";
+
+// Acesso a um objeto instaciado
+echo $emD::$escalaDoMaior;
 
 ?>
     
