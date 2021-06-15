@@ -3,7 +3,7 @@
 ## Tecnologias utilizadas:
 1. HTML5
 1. CSS3
-1. PHP 8
+1. PHP 7
 1. Servidor Web: XAMPP
 
 ## Sobre 
