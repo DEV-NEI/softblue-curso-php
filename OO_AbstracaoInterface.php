@@ -14,20 +14,42 @@
     {
         public $volume;
         public abstract function tocar(); //apenas uma assinatura do metodo      
-
     }
 
-    class Guitarra extends InstrumentoMusical
+    interface Transportavel
+    {
+        public function transportar();
+    
+    }
+
+    class Guitarra extends InstrumentoMusical implements Transportavel
     {
         public function tocar()
         {
             echo "Tocando guitarra<BR>";
         }
 
+        public function transportar()
+        {
+            echo "Transporte de guitarra: entrar em contato com a loja de musica <BR>";
+        }
+    }
+
+    class Computador implements Transportavel
+    {
+        public function transportar()
+        {
+            echo "Transporte de computador: chame a Softblue! <BR>";
+        }
+
     }
     
     $guitarra = new Guitarra();
     $guitarra->tocar();
+    $guitarra->transportar();
+
+    $computador = new Computador();
+    $computador->transportar();
 
 
 ?>
