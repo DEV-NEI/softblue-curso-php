@@ -49,6 +49,7 @@ public function apresentar()
 $m = new Mamifero(4, 4.6);
 echo "Mamífero <BR>";
 $m->andar();
+echo "<BR>";
 
 $h = new Homem(41, 60.3, 267544);
 echo "Homem <BR>";
