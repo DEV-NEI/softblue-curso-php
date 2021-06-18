@@ -77,6 +77,7 @@ $meuCarro->acelerar();
 $meuCarro->frear();
 $meuCarro->frear();
 
+
 echo "O carrro de cor " . $meuCarro->getCor() . " está andando " . $meuCarro->getVelocidade();
 echo "<BR>";
 
