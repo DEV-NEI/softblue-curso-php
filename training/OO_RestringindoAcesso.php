@@ -7,6 +7,10 @@
     <title>OO: Restrigindo acesso</title>
 </head>
 <body>
+
+<div>
+    <p>Restrigindo acesso</p>
+</div>
 <p>Operador <b>protected</b></p>
 <p>Restringe o acesso aos atributos e aos métodos definidos para somente as subclasses</p>   
 <BR><BR>

@@ -4,69 +4,116 @@
 
 <?php
 
-  class Geral
+class Carro
 {
-	public $nome;
-    public $idade;
+	private $velocidade;
+    private $cor;
     
-    public function __construct($nome, $idade)
+    public function __construct($cor)
     {
-    	$this->nome = $nome;
-        $this->idade = $idade;
+    	$this->setCor($cor);
+        $this->setVelocidade(0);
     }
     
-    public function apresentar()
-    { 
-    	echo "Nome: " . $this->nome . "<BR>";
-        echo "Idade: " . $this->idade . "<BR>";
-     }
-
-}
-
-interface Animal
-{
-	     
-    public function Comportamento();   
-
-}
-
-class Cachorro extends Geral implements Animal
-{
-	public function Comportamento(){
-    	echo "au , au , au. . <BR><BR>";
+    public function getVelocidade()
+    {
+    	return $this->velocidade;
     }
-
-}
-
-class Gato extends Geral implements Animal
-{
-	public function Comportamento(){
-    	echo "miau , miau , miau. . <BR><BR>";
+    
+    public function getCor()
+    {
+    	return $this->cor;
     }
-
+    
+    private function setvelocidade($velocidade)
+    {
+    	$this->velocidade = $velocidade;
+    }
+    
+    public function setCor($cor)
+    {
+    	$this->cor = $cor;
+    }
+    
+    public function acelerar()
+    {
+    	$this->setVelocidade($this->getVelocidade() +1);
+    }
+    
+    public function frear()
+    {
+    	$this->setVelocidade($this->getVelocidade() -1);
+    }
 }
 
 
-class Pato extends Geral implements Animal
+class Moto extends Carro
 {
-	public function Comportamento(){
-    	echo "piu , piu.. . <BR><BR>";
-    }    
-   
+	public $iscapacete;
+    
+	public function __construct($velocidade, $cor, $iscapacete)
+    {
+    	parent::__construct($velocidade, $cor);
+        $this->iscapacete = $iscapacete;
+    }
+    
+    public function getisCapacete()
+    {
+    	return $this->iscapacete;
+    }
+    
+    public function setCapacete($iscapacete)
+    {
+    	$this->capacete = $iscapacete;
+    }
+    
+
+	
+
 }
 
 
-$cachorro = new Cachorro("Toby", 13);
-$cachorro->apresentar();
-$cachorro->Comportamento();
 
-$gato = new Gato("Mila", 4);
-$gato->apresentar();
-$gato->comportamento();
 
-$pato = new Pato("Shi", 2);
-$pato->apresentar();
-$pato->comportamento();
+$meuCarro = new Carro("preta");
+//$meuCarro->setVelocidade = 50;
+
+$meuCarro->acelerar();
+$meuCarro->acelerar();
+$meuCarro->acelerar();
+$meuCarro->acelerar();
+$meuCarro->acelerar();
+$meuCarro->frear();
+$meuCarro->frear();
+
+echo "Meu carro de cor " . $meuCarro->getCor() . " andando com " . $meuCarro->getVelocidade();
+echo "<BR><BR>";
+
+$moto = new Moto("azul", 2, FALSE);
+
+    if($moto->iscapacete)
+    {
+       echo "Esta usando capacete <BR>";
+    }
+    else
+    {
+   	   echo "Não está usando capacete <BR>";
+    } 
+
+
+$moto->acelerar();
+$moto->acelerar();
+$moto->acelerar();
+$moto->acelerar();
+$moto->acelerar();
+
+$moto->frear();
+$moto->frear();
+
+
+
+echo "Moto de cor " . $moto->getCor() . " andando à " . $moto->getVelocidade() . "<BR>";
+
 
 
 ?>
